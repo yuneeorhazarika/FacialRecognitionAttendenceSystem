@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 124 58 237;   /* Purple */
+    --color-secondary: 56 189 248; /* Sky blue */
+    --color-accent: 236 72 153;    /* Pink */
+    --color-success: 34 197 94;
+    --color-warning: 234 179 8;
+    --color-error: 239 68 68;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-violet-50 via-sky-50 to-purple-50 text-gray-900 font-sans min-h-screen;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-600;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl mb-6;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl mb-4;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl mb-3;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm hover:shadow-md active:scale-95;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white focus:ring-violet-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 focus:ring-gray-500;
+  }
+
+  .btn-success {
+    @apply btn bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white focus:ring-green-500;
+  }
+
+  .btn-error {
+    @apply btn bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white focus:ring-red-500;
+  }
+
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden hover:shadow-2xl transition-shadow duration-300;
+  }
+
+  .input {
+    @apply w-full px-4 py-2.5 border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white/70 backdrop-blur-sm transition-all duration-200;
+  }
+
+  .face-detection-box {
+    @apply absolute border-2 border-violet-500 rounded-xl shadow-lg;
+  }
+
+  .face-detection-label {
+    @apply absolute -mt-7 bg-gradient-to-r from-violet-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg;
+  }
+
+  .nav-gradient {
+    @apply bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white;
+  }
+
+  .sidebar-item {
+    @apply flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200;
+  }
+
+  .sidebar-item-active {
+    @apply bg-gradient-to-r from-violet-100 to-purple-100 text-violet-700;
+  }
+
+  .sidebar-item-inactive {
+    @apply text-gray-700 hover:bg-gray-100;
+  }
+}
+
+/* Scanning animation */
+.scanning-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(124, 58, 237, 0.8),
+    rgba(236, 72, 153, 0.8),
+    transparent
+  );
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+  animation: scan 2s infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+/* Pulse animation for face detection */
+.face-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(124, 58, 237, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+  }
+}
+
+/* Glass morphism effect */
+.glass-morphism {
+  @apply bg-white/70 backdrop-blur-md border border-white/20;
+}
